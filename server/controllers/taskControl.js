@@ -28,16 +28,16 @@ module.exports = {
     },
 
     getTaskByID: function(req, res){
-        Task.findOne({_id: req.params._id}, function(err, results){
+        var task = Task.findOne({_id: req.params.id}, function(err, result){
             if (err){
                 console.log(err);
             }
-            return res.json(results);
+            return res.json(result);
         });
     },
 
     updateByID: function(req, res){
-        Task.findOne({_id: req.params._id}, function(err, result){
+        Task.findOne({_id: req.params.id}, function(err, result){
             if (err){
                 console.log(err);
             }
@@ -45,7 +45,7 @@ module.exports = {
                 result[key] = req.body[key];
             }
             result.save();
-            return res.redirect('/tasks/'+req.params._id);
+            return res.redirect('/tasks/'+req.params.id);
         });
     },
 
